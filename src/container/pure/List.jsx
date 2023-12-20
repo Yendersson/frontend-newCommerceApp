@@ -1,9 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const List = () => {
+const List = ({ data, result }) => {
+
+    const history = useNavigate();
+
+    function nav(id) {
+        history(`/products/${id}`);
+    }
+
     return (
         <div>
-            <h2 class="busqueda-title-results-search">Resultados: </h2>
+            <h2 class="busqueda-title-results-search">Resultados: {result}</h2>
 
             <section class="busqueda-contenido-desktop">
                 <div>
@@ -28,20 +36,20 @@ const List = () => {
                 <div class="busqueda-productos-desktop">
 
 
+                    {data.map((item, index) => {
+                        return (
+                            <article key={index} class="busqueda-articulo-desktop" data-id={item.id} onClick={() => nav(item.id)}>
+                                <div class="contenedor-img-api" >
+                                    <img src="" alt="" />
+                                </div>
+                                <div class="busqueda-producto-description-desktop">
 
-
-                    <article class="busqueda-articulo-desktop" data-id="<%=pr.getId()%>" onclick="window.location.href = 'productDetail.jsp?id=<%=pr.getId()%>'">
-                        <div class="contenedor-img-api" >
-                            <img src="" alt="" />
-                        </div>
-                        <div class="busqueda-producto-description-desktop">
-                            {/*
-         <h3><%=pr.getTitle() %></h3>
-        <p><%=pr.getCurrent_price()%>$</p>
-      */}
-                            <span>Vendido por:</span>
-                        </div>
-                    </article>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.current_price}$</p>
+                                </div>
+                            </article>
+                        )
+                    })}
 
                 </div>
             </section>

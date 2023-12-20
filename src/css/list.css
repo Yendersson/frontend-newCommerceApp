@@ -1,3 +1,16 @@
+.fade {
+    opacity: 1;
+    transition: opacity 1.5s; /* Ajusta la duración y la función de temporización según tus necesidades */
+  }
+  
+  .fade.out {
+    opacity: 0;
+  }
+  
+  .fade.in {
+    opacity: 1;
+  }
+
 .busqueda-title-results-search{
     font-size: var(--fs-8);
     text-align: center;
@@ -132,7 +145,7 @@
        display: grid;
        justify-content: center;
        align-content: center;
-       grid-template-columns: 20% auto;
+       grid-template-columns: 20% 80%;
        gap: 5%;
        background-color: transparent;
    }

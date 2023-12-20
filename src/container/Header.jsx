@@ -1,10 +1,31 @@
-import React from "react";
-import "../css/style.css";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategory } from "../services/actions/actionCategory";
+import NavCategory from "./pure/navCategory";
+import { getAllSubCategory } from "../services/actions/actionSubcategory";
+import Search from "./pure/Search";
+
+const selector = state => state.category;
+const selector2 = state => state.subCategory;
+
 const Header = () => {
 
-    return (
-        <header>
+    const state = useSelector(selector);
+    const statesubcatgory = useSelector(selector2);
+    const dispatch = useDispatch();
+
+    useEffect(_=> {
+        dispatch(getAllCategory());
+        dispatch(getAllSubCategory());
+    }, []);
+
+    function renderizado() {
+        if(state.error.exist || statesubcatgory.error.exist) return alert(state.error.message);
+        if(state.loader && statesubcatgory.loader) return (<p>Charging</p>);
+
+        return (
+            <header>
 
         <div className="header-top">
     		<div className="container">
@@ -59,15 +80,7 @@ const Header = () => {
     
         </a> 
 
-          <div className="header-search-container">
-
-              <input type="search" name="search" className="search-field" id="search" placeholder="Buscar productos..."/>
-
-              <button className="search-btn" id="search-btn">
-                  <ion-icon name="search-outline"></ion-icon>
-              </button>
-
-          </div>
+            <Search></Search>
 
           <div className="header-user-actions">
 
@@ -100,21 +113,7 @@ const Header = () => {
                   <a className="menu-title" >Categorias</a>
                   <div className="dropdown-panel">
 
-                    {/*
-      				<% for(Category ct : Category.DAO.findAll()){ %>
-      					<ul className="dropdown-panel-list">
-      						 <li className="menu-title">
-                        		<a href="<%=request.getContextPath()%>/listing.jsp?cat=<%=ct.getId()%>" className="filtro" data-id="ropa-accesorios"><%=ct.getTitle()%></a>
-                      		</li>
-                      			<% for (Subcategory sct : Subcategory.DAO.findAll()) { %>
-                      				<% if (!sct.getCategory().equals(ct)) continue;%>
-                      				<li className="panel-list-item">
-                        				<a href="<%=request.getContextPath()%>/listing.jsp?sub=<%=sct.getId() %>"><%=sct.getTitle()%></a>
-                      				</li>
-                      			<% } %>
-      					</ul>
-      				<% } %>
-                                    */}
+                    <NavCategory data={state.data} dataSubcategory={statesubcatgory.data}></NavCategory>
                   </div>
                 </li>
 
@@ -233,7 +232,7 @@ const Header = () => {
                   </li>
 
                   <li className="submenu-category">
-                      <a href="/category/revista_arte" className="submenu-title filtro" arte-libros-revista>Arte, libros y revistas</a>
+                      <a href="/category/revista_arte" className="submenu-title filtro">Arte, libros y revistas</a>
                   </li>
 
                   <li className="submenu-category">
@@ -332,7 +331,11 @@ const Header = () => {
   </nav>
         
     </header>
-    );
+        )
+    }
+    return (
+        renderizado()
+    )
 }
 
 export default Header;
