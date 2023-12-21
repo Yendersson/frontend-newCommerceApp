@@ -1,70 +1,7 @@
 import axios from "axios";
+import { clientAxios, getResponse } from "../client/axiosClient";
+import { GET_ALL_PRODUCTS, GET_ONE_PRODUCT } from "../types";
 
-export const getAllProducts = () => {
+export const getAllProducts = () => clientAxios("/product", null, GET_ALL_PRODUCTS);
 
-    let initialState = {
-        data:[],
-        error:{
-            exist:false,
-            message:null
-        },
-        loader:true
-    };
-
-    return async (dispatch) => {
-        try {
-            const response = await axios.get("http://localhost:18080/api/product");
-            
-            initialState.data = response.data;
-            initialState.loader = false;
-
-        } catch (error) {
-            initialState.error = {
-                exist:true,
-                message: error.message
-            };
-        }
-
-        dispatch({
-            type: "api/getAllProducts",
-            payload: initialState
-        });
-    }
-
-
-}
-
-
-export const getOneProducts = (id) => {
-
-    let initialState = {
-        data:{},
-        error:{
-            exist:false,
-            message:null
-        },
-        loader:true
-    };
-
-    return async (dispatch) => {
-        try {
-            const response = await axios.get("http://localhost:18080/api/product/"+id);
-            
-            initialState.data = [response.data];
-            initialState.loader = false;
-
-        } catch (error) {
-            initialState.error = {
-                exist:true,
-                message: error.message
-            };
-        }
-
-        dispatch({
-            type: "api/getOneProducts",
-            payload: initialState
-        });
-    }
-
-
-}
+export const getOneProducts = (id) => clientAxios(`/product/${id}`, null, GET_ONE_PRODUCT);

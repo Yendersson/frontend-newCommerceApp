@@ -147,10 +147,6 @@ const Header = () => {
               </li>
 
               <li className="menu-category">
-                  <a href="<%=request.getContextPath()%>/vender.jsp" className="menu-title select" data-id="vender">Vender</a>
-              </li>
-
-              <li className="menu-category">
                   <Link to={"/faqs"} className="menu-title select" data-id="faq">Ayuda</Link>
               </li>
 

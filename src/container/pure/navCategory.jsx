@@ -21,8 +21,8 @@ const NavCategory = ({data}) =>{
             <>
                 {subcategories.map((item, index) => 
                     (
-                        <li className="panel-list-item" key={index}>
-                            <Link key={index} to={"products/subcategory/"+item.title.replaceAll(" ", "_")}>{item.title}</Link>
+                        <li className="panel-list-item" key={index*10}>
+                            <Link to={"products/subcategory/"+item.title.replaceAll(" ", "_")}>{item.title}</Link>
                         </li>
                     )
                 )}
@@ -37,7 +37,7 @@ const NavCategory = ({data}) =>{
             {data.map((item, index) => (
                 <ul className="dropdown-panel-list">
                  <li className="menu-title" key={index}>
-                  <Link className="filtro" key={index} data-id="ropa-accesorios" to={"products/category/"+item.title.replaceAll(" ", "_")}>{item.title}</Link>
+                  <Link className="filtro" data-id="ropa-accesorios" to={"products/category/"+item.title.replaceAll(" ", "_")}>{item.title}</Link>
                 </li>
                 {renderSubcategories(item.id)}
                 

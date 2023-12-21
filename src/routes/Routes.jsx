@@ -5,10 +5,16 @@ import ProductList from "../container/ProductList";
 import ProductCategory from "../container/ProductCategory";
 import ProductSubCategory from "../container/ProductSubcategory";
 import Product from "../container/Product";
+import Error404 from "../container/404";
 
 const Routes = () => {
 
     let routes = useRoutes([
+
+        {
+            path: "*",
+            element: <Error404></Error404>
+        },
         {
             path: "/",
             element: <Home></Home>
