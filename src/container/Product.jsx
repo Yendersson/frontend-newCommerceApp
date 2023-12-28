@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneProducts } from "../services/actions/actionProducts";
+import Spinner from "./pure/Spinner";
 
 const selector = state => state.product
 const Product = () => {
@@ -9,20 +10,22 @@ const Product = () => {
     const state = useSelector(selector);
     const dispatch = useDispatch();
 
-    useEffect(_ => { dispatch(getOneProducts(id)) }, []);
+    useEffect(_ => { 
+        dispatch(getOneProducts(id)) 
+    },[]);
     console.log(state)
     function renderizado() {
-        if (state.loader) return (<p>Cargando...</p>);
+        if (state.loader) return (<Spinner></Spinner>);
         if (state.error.exist) return (<div>Ha ocurrido un error: {state.error.message}</div>);
 
         return (
             <section id="mainProducto">
                 <div className="containerMainProducto">
-
+                    {state.data[0].id == id &&
                     <div className="containerProducto">
                         <div className="divImagesProducto">
                             <div className="divImgProducto">
-                                <img src="{{details.imgUrl.url1}}" alt="#" className="imgPrincipalProducto" />
+                                <img src={`http://localhost:18080/update/${state.data[0].picture}`} alt="#" className="imgPrincipalProducto" />
                             </div>
                             <div className="divGaleryProducto">
                                 <div className="imgMinProducto">
@@ -56,7 +59,7 @@ const Product = () => {
                             </div>
                         </div>
                     </div>
-
+                    }       
                 </div>
             </section>
         )

@@ -1,7 +1,8 @@
 
 //Product
 export const GET_ALL_PRODUCTS = "api/getAllProducts";
-export const GET_ONE_PRODUCT = "api/getOneProdutcs";
+export const GET_ONE_PRODUCT = "api/getOneProducts";
+export const ORDER_BY = "filter/AllProdutcs";
 
 //Category
 export const GET_ALL_CATEGORIES= "api/getAllCategory";

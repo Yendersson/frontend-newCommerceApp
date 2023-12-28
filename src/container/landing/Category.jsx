@@ -19,7 +19,7 @@ const Category = () => {
             {state.data.map((item,index) => (
               <div className="category-item" key={index}>
                 <div className="category-img-box">
-                  <img src={item.picture} alt="dress &amp; frock" width="30" />
+                  <img src={`http://localhost:18080/update/${item.picture}`} alt="dress &amp; frock" width="30" />
                 </div>
                 <div className="category-content-box">
                   <div className="category-content-flex">

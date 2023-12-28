@@ -3,6 +3,7 @@ import List from "./pure/List";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../services/actions/actionProducts";
 import { useParams } from "react-router-dom";
+import Spinner from "./pure/Spinner";
 
 
 const selector = state => state.product;
@@ -30,7 +31,7 @@ const ProductList = () => {
     },[]);
 
     function renderizado() {
-        if (state.loader) return (<p>Cargando...</p>);
+        if (state.loader) return (<Spinner></Spinner>);
         if (state.error.exist) return (<div>Ha ocurrido un error: {state.error.message}</div>);
         return (
         <div className={`fade ${isVisible ? 'in' : 'out'}`}>

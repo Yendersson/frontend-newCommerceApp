@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import ListFilter from "./ListFilter";
 
 const List = ({ data, result }) => {
 
@@ -14,24 +15,8 @@ const List = ({ data, result }) => {
             <h2 className="busqueda-title-results-search">Resultados: {result}</h2>
 
             <section className="busqueda-contenido-desktop">
-                <div>
-                    <div className="busqueda-filter-order-desktop">
-                        <h3>Ordenar</h3>
-                        <hr />
-                        <p className="busqueda-filter"><a href="">A-Z</a></p>
-                        <p className="busqueda-filter"><a href="">Z-A</a></p>
-                        <p className="busqueda-filter"><a href="">#numeral</a></p>
-                        <p className="busqueda-filter"><a href="">123</a></p>
 
-                        <h3>Filtrar</h3>
-                        <hr />
-                        <p className="busqueda-filter" ><a href="">Precio</a></p>
-                        <p className="busqueda-filter"><a href="">Nuevo</a></p>
-                        <p className="busqueda-filter"><a href="">Usado</a></p>
-                        <p className="busqueda-filter"><a href="">Talla</a></p>
-                    </div>
-                </div>
-
+                <ListFilter></ListFilter>
 
                 <div className="busqueda-productos-desktop">
 
