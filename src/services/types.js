@@ -1,4 +1,7 @@
 
+//Landing
+export const GET_ACTIVE_LANDING = "api/getActiveLanding";
+
 //Product
 export const GET_ALL_PRODUCTS = "api/getAllProducts";
 export const GET_ONE_PRODUCT = "api/getOneProducts";

@@ -12,6 +12,9 @@ const Category = () => {
         
     }
     return (
+      <>
+      <h4 class="category-tittle"> Categorías </h4>
+
         <div className="category">
           <div className="container">
             <div className="category-item-container has-scrollbar"> 
@@ -32,6 +35,7 @@ const Category = () => {
             </div>
           </div>
         </div>
+      </>
     )
 }
 
