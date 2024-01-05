@@ -387,6 +387,7 @@
   font-size: var(--fs-6);
   font-weight: var(--weight-500);
   padding: 12px 0;
+  pointer-events: none;
   }
   
   .accordion-menu > div {

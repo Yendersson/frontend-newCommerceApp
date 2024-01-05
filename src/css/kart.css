@@ -109,7 +109,7 @@
 
 .contenedor-carrito{
     margin-bottom: 30px;
-    height: 60px;
+   /* height: 60px;*/
     line-height: 28px;
 }
 
@@ -120,7 +120,7 @@
     padding: 20px;
     text-align: center;
     width: 600px;
-    height: 75vh;
+    /*height: 75vh;*/
     transition: all 0.5 ease-in;
     border-radius: 1em;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.464) ;
@@ -207,3 +207,20 @@
     }
 
 }
+
+
+/*FORM MERCADO PAGO*/
+
+#form-checkout {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+  }
+
+  .container-form {
+    height: 18px;
+    display: inline-block;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 2px;
+    padding: 1px 2px;
+  }

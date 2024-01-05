@@ -4,11 +4,6 @@ const PaymentMethod = ({data}) => {
 
     return (
         <section className="steps">
-
-            <div style={{width: "150px", height: "150px", background:"#000"}}>
-
-            </div>
-     
         <div className="box-container">
         {data.map((item,index) => 
         (

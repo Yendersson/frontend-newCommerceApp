@@ -13,7 +13,7 @@ const Category = () => {
     }
     return (
       <>
-      <h4 class="category-tittle"> Categorías </h4>
+      <h4 className="category-tittle"> Categorías </h4>
 
         <div className="category">
           <div className="container">

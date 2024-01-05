@@ -6,6 +6,9 @@ import ProductCategory from "../container/ProductCategory";
 import ProductSubCategory from "../container/ProductSubcategory";
 import Product from "../container/Product";
 import Error404 from "../container/404";
+import Faqs from "../container/Faqs";
+import Profile from "../container/Profile";
+import Kart from "../container/Kart";
 
 const Routes = () => {
 
@@ -40,7 +43,21 @@ const Routes = () => {
         {
             path: "/products/subcategory/:name",
             element: <ProductSubCategory></ProductSubCategory>
+        },
+        {
+            path: "/help",
+            element: <Faqs></Faqs>
+        },
+        {
+            path: "/profile",
+            element: <Profile></Profile>
+        },
+        {
+            path: "/kart",
+            element: <Kart></Kart>
         }
+
+
     ])
 
     return routes
