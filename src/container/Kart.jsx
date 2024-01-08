@@ -1,7 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MpForm from "./MpForm";
+import { useDispatch, useSelector } from "react-redux";
+
+const selector = state => state.kart;
+const selector2 = state => state.product;
 
 const Kart = () => {
+  const state = useSelector(selector);
+  const products = useSelector(selector2);
+
+  const dispatch = useDispatch();
+
+  useEffect(_=>{
+
+  },[])
 
   const [payForm, setPayform] = useState(false);
 
@@ -36,19 +48,18 @@ const Kart = () => {
 
 
       
-      <div id="prueba-producto">
-          <img src="/images/icons/compra.png" className="imgCarrito" />
-          <h3 id="producto1"></h3>
-          <h3 id="cantidad1">1</h3>
-          <h3 id="precio1"></h3>
-      </div>
+        {state.items.map((item,index) => 
+        (
+          <div id="prueba-producto" key={index}>
+          <img src={`http://localhost:18080/update/${item.item.picture}`} className="imgCarrito" />
+          <h3 id="producto1">{item.item.title}</h3>
+          <h3 id="cantidad1">{item.quantity}</h3>
+          <h3 id="precio1">{item.item.current_price*item.quantity}.0</h3>
+          </div>
+          
+        )
+        )}
      
-      <div id="segunda-columna">
-          <img src="icons/compra.png" className="imgCarrito" />
-          <h3 id="producto2">.....</h3>
-          <h3 id="cantidad2">......</h3>
-          <h3 id="precio2">........</h3>
-      </div>
       <div id="final">
           <button className="boton1 btnCarrito">seguir comprando</button>
           <h2 id="precio-total">total:  $</h2>

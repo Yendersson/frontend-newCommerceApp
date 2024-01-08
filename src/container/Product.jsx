@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneProducts } from "../services/actions/actionProducts";
 import Spinner from "./pure/Spinner";
+import { modifyKart } from "../services/actions/actionKart";
 
 const selector = state => state.product
 const Product = () => {
@@ -13,7 +14,14 @@ const Product = () => {
     useEffect(_ => { 
         dispatch(getOneProducts(id)) 
     },[]);
-    console.log(state)
+
+    function addKart(id){
+        const quantity = document.querySelector("#quantity").value;
+        const product = {item: state.data[0], quantity};
+
+        dispatch(modifyKart(product));
+    }
+
     function renderizado() {
         if (state.loader) return (<Spinner></Spinner>);
         if (state.error.exist) return (<div>Ha ocurrido un error: {state.error.message}</div>);
@@ -55,7 +63,14 @@ const Product = () => {
                                 </div>
                             </div>
                             <div className="agregarEnCarritoProducto">
-                                <button className="agregaAlCarritoProducto" id="agregar">Agregar al carrito</button>
+                                <div className="stock">
+                                    <p>{state.data[0].stock > 0? `${state.data[0].stock} disponibles`: "AGOTADO"}</p>
+                                </div>
+                                <select name="quantity" id="quantity">
+                                 
+                                 {Array(state.data[0].stock).fill(null).map((item,index) => (<option key={index} value={index+1} >{index+1}</option>))}
+                                </select>
+                                <button className="agregaAlCarritoProducto" id="agregar" onClick={()=> addKart(id)}>Agregar al carrito</button>
                             </div>
                         </div>
                     </div>

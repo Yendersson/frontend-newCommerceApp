@@ -6,7 +6,7 @@ const selector = state => state.category
 const Category = () => {
     const state = useSelector(selector);
 
-    console.log(state);
+    
 
     function renderizado(){
         

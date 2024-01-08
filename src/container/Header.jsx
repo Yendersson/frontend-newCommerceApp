@@ -7,19 +7,23 @@ import { getAllSubCategory } from "../services/actions/actionSubcategory";
 import Search from "./pure/Search";
 import Login from "./pure/Login";
 import NavCategoryMobile from "./pure/mobile/NavCategoryMobile";
+import { updateKart } from "../services/actions/actionKart";
 
 const selector = state => state.category;
 const selector2 = state => state.subCategory;
+const selector3 = state => state.kart;
 
 const Header = () => {
 
     const state = useSelector(selector);
     const statesubcatgory = useSelector(selector2);
+    const kartState = useSelector(selector3);
     const dispatch = useDispatch();
 
     useEffect(_ => {
         dispatch(getAllCategory());
         dispatch(getAllSubCategory());
+        dispatch(updateKart());
     }, []);
 
     function showLogin() {
@@ -82,7 +86,7 @@ const Header = () => {
                         </button>
                         <button className="action-btn select carrito" data-id="Carrito">
                             <a href="<%=request.getContextPath()%>/kart.jsp"><ion-icon name="cart-outline"></ion-icon></a>
-                            <span className="count">0</span>
+                            <span className="count">{kartState.items.length}</span>
                         </button>
                     </div>
                 </div>
