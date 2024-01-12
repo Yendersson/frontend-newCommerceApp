@@ -9,6 +9,7 @@ import Error404 from "../container/404";
 import Faqs from "../container/Faqs";
 import Profile from "../container/Profile";
 import Kart from "../container/Kart";
+import Bill from "../container/Bill";
 
 const Routes = () => {
 
@@ -45,7 +46,7 @@ const Routes = () => {
             element: <ProductSubCategory></ProductSubCategory>
         },
         {
-            path: "/help",
+            path: "/faqs",
             element: <Faqs></Faqs>
         },
         {
@@ -55,6 +56,10 @@ const Routes = () => {
         {
             path: "/kart",
             element: <Kart></Kart>
+        },
+        {
+            path: "/bill/:id",
+            element: <Bill></Bill>
         }
 
 

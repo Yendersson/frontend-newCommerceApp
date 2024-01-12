@@ -1,7 +1,6 @@
 import React from "react";
 
 const ONGs = ({data, type}) => {
-    console.log("ONG:", data)
 
     function renderizado() {
         if (type === "CARD") {

@@ -1,4 +1,7 @@
 
+//PUCHARSE
+export const GET_PURCHASE = "api/getPurchase";
+
 //Landing
 export const GET_ACTIVE_LANDING = "api/getActiveLanding";
 

@@ -21,7 +21,7 @@ const NavCategory = ({data}) =>{
             <>
                 {subcategories.map((item, index) => 
                     (
-                        <li className="panel-list-item" key={index*10}>
+                        <li className="panel-list-item" >
                             <Link to={"products/subcategory/"+item.title.replaceAll(" ", "_")}>{item.title}</Link>
                         </li>
                     )

@@ -4,7 +4,6 @@ const initialState = {
 };
 
 export const reducerKart = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case "ADD_KART":
             let temp = state.items;
@@ -23,6 +22,16 @@ export const reducerKart = (state = initialState, action) => {
             }
             return {
                 items: verify
+            };
+        
+        case "DELETE_KART":
+            let prevState = []
+            prevState = JSON.parse(localStorage.getItem("items"));
+            prevState = prevState.filter(item => item.item.id != action.payload);
+            localStorage.setItem("items", JSON.stringify(prevState));
+            
+            return {
+                items: prevState
             };
 
     

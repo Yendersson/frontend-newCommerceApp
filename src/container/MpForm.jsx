@@ -3,7 +3,7 @@ import { CardPayment, initMercadoPago } from "@mercadopago/sdk-react";
 
 initMercadoPago("TEST-e687118a-c544-4ece-9005-36d6b04cd62a", { locale: 'es-AR' });
 
-const MpForm = ({closeModal, total}) => {
+const MpForm = ({closeModal, total, items}) => {
 
   function modalPayment() {
     closeModal();
@@ -13,21 +13,28 @@ const MpForm = ({closeModal, total}) => {
     amount: total,
   };
 
+  function orderObj(items){
+    const itemsOrder = [];
+    
+    items.forEach(item => {
+      let obj= {
+        id: item.item.id,
+        title: item.item.title,
+        description: item.item.description,
+        category_id: item.item.category.title,
+        quantity: item.quantity,
+        unit_price: item.item.current_price,
+        type: item.item.category.title,
+      }
+
+      itemsOrder.push(obj);
+    })
+
+    return itemsOrder;
+  }
+
   const additional_info ={
-    "items": [
-        {
-            "id": "5",
-            "title": "Point Mini",
-            "description": "Point product for card payments via Bluetooth.",
-            "picture_url": "https://http2.mlstatic.com/resources/frontend/statics/growth-sellers-landings/device-mlb-point-i_medium2x.png",
-            "category_id": "electronics",
-            "quantity": 1,
-            "unit_price": 58.8,
-            "type": "electronics",
-            "event_date": "2023-12-31T09:37:52.000-04:00",
-            "warranty": false,
-        }
-    ],
+    "items": orderObj(items),
     "payer": {
         "first_name": "Test",
         "last_name": "Test",
@@ -53,7 +60,9 @@ const MpForm = ({closeModal, total}) => {
         .then(resp => resp.json())
         .then(data => {
           resolve(data);
-          console.log(data);
+          alert(data.status);
+          if (data.status === 'approved') localStorage.setItem("items",JSON.stringify([]));
+          
         })
         .catch(error => {
           reject();

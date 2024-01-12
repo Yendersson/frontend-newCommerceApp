@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const reducerProduct = (state = initialState, action) =>{
-    console.log(action.type);
+
     switch (action.type) {
         case "api/getAllProducts":
             return {
@@ -22,7 +22,7 @@ export const reducerProduct = (state = initialState, action) =>{
             };
 
         case "api/getOneProducts":
-            console.log(action.payload)
+
             return {
                 ...state,
                 data: action.payload.data,

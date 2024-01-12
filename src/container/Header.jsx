@@ -85,7 +85,7 @@ const Header = () => {
                             <ion-icon name="person-outline"></ion-icon>
                         </button>
                         <button className="action-btn select carrito" data-id="Carrito">
-                            <a href="<%=request.getContextPath()%>/kart.jsp"><ion-icon name="cart-outline"></ion-icon></a>
+                            <Link to={"/kart"}><ion-icon name="cart-outline"></ion-icon></Link>
                             <span className="count">{kartState.items.length}</span>
                         </button>
                     </div>
@@ -142,10 +142,10 @@ const Header = () => {
                 <button className="action-btn" data-mobile-menu-open-btn onClick={mobileMenuOpenBtn}>
                     <ion-icon name="menu-outline"></ion-icon>
                 </button>
-                <button className="action-btn carrito" data-id="Carrito">
+                <Link className="action-btn carrito" data-id="Carrito" to={"/kart"}>
                     <ion-icon name="cart-outline" id="carrito"></ion-icon>
-                    <span className="count">0</span>
-                </button>
+                    <span className="count">{kartState.items.length}</span>
+                </Link>
                 <button className="action-btn" onClick={() => window.location.href = "/"}>
                     <ion-icon name="home-outline"></ion-icon>
                 </button>

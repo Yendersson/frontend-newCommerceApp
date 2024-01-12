@@ -19,7 +19,6 @@ export function clientAxios(url, headers={"Content-Type":"application/json"}, ty
     return async (dispatch) => {
         try {
             const response = await client.get(url);
-            console.log(response.data)
             initialObj.data = Array.isArray(response.data)? response.data: [response.data];
             initialObj.loader = false;
             

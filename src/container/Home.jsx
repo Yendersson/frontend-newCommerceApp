@@ -17,8 +17,6 @@ const Home = () => {
         dispatch(getActiveLanding());
     }, [])
 
-    console.log("landing:", state.data);
-
     function renderizado(){
         if (state.loader) return (<Spinner></Spinner>);
         if (state.error.exist) return (<div>Ha ocurrido un error: {state.error.message}</div>);
