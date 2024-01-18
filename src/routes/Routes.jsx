@@ -9,60 +9,70 @@ import Error404 from "../container/404";
 import Faqs from "../container/Faqs";
 import Profile from "../container/Profile";
 import Kart from "../container/Kart";
+import Main from "../container/Main";
 import Bill from "../container/Bill";
+import Purchase from "../container/Purchase";
+import ProfileData from "../container/pure/ProfileData";
 
 const Routes = () => {
 
     let routes = useRoutes([
-
-        {
-            path: "*",
-            element: <Error404></Error404>
-        },
         {
             path: "/",
-            element: <Home></Home>
-        },
-
+            element: <Main/>,
+            errorElement: <Error404/>,
+            children: [
+                {index:true, element: <Home/>},
+                {
+                    path: "/products",
+                    element: <ProductList></ProductList>
+                },
+                {
+                    path: "/products/search/:search",
+                    element: <ProductList></ProductList>
+                },
+                {
+                    path: "/products/:id",
+                    element: <Product></Product>
+                },
+        
+                {
+                    path: "/products/category/:name",
+                    element: <ProductCategory></ProductCategory>
+                },
+                {
+                    path: "/products/subcategory/:name",
+                    element: <ProductSubCategory></ProductSubCategory>
+                },
+                {
+                    path: "/faqs",
+                    element: <Faqs></Faqs>
+                },
+                {
+                    path: "/profile",
+                    element: <Profile></Profile>
+                },
+                {
+                    path: "/kart",
+                    element: <Kart></Kart>
+                },
+                {
+                    path: "/profile",
+                    element: <Profile/>,
+                    children: [
+                        {index: true, element: <ProfileData/>},
+                        {
+                            path: "/profile/purchase",
+                            element: <Purchase/>
+                        }
+                    ]
+                }
+            ]
+        }, 
         {
-            path: "/products",
-            element: <ProductList></ProductList>
-        },
-        {
-            path: "/products/search/:search",
-            element: <ProductList></ProductList>
-        },
-        {
-            path: "/products/:id",
-            element: <Product></Product>
-        },
-
-        {
-            path: "/products/category/:name",
-            element: <ProductCategory></ProductCategory>
-        },
-        {
-            path: "/products/subcategory/:name",
-            element: <ProductSubCategory></ProductSubCategory>
-        },
-        {
-            path: "/faqs",
-            element: <Faqs></Faqs>
-        },
-        {
-            path: "/profile",
-            element: <Profile></Profile>
-        },
-        {
-            path: "/kart",
-            element: <Kart></Kart>
-        },
-        {
-            path: "/bill/:id",
-            element: <Bill></Bill>
+            path:"/bill",
+            element: <Bill/>
         }
-
-
     ])
 
     return routes

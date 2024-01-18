@@ -1,37 +1,24 @@
-import React, { useEffect } from "react";
 import List from "./pure/List";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../services/actions/actionProducts";
+import { useProductCategory } from "../hooks/useProductCategory";
+import Spinner from "./pure/Spinner";
 
-const selector = state => state.product;
 const ProductCategory = () => {
-    const state = useSelector(selector);
-    const dispatch = useDispatch();
 
-
-    useEffect(_=> {
-        dispatch(getAllProducts());
-    },[]);
-
-
-    const {name} = useParams();
-
-    function renderizado() {
-        if (state.loader) return (<p>Cargando...</p>);
-        if (state.error.exist) return (<div>Ha ocurrido un error: {state.error.message}</div>);
-
-        const products = state.data.filter(item => item.category.title.replaceAll(" ","_") === name);
-
-        return (
-            <List data={products} result={name}></List>
-        )
-    }
-
+    const { products, state, name } = useProductCategory();
     return (
-        <div>
-            {renderizado()}
-        </div>
+        <>
+            {
+                state.loader ?
+                    (<Spinner />) :
+                    state.error.exist ?
+                        (<div>Ha ocurrido un error: {state.error.message}</div>) :
+                        (
+                            <div>
+                                <List data={products} result={name}></List>
+                            </div>
+                        )
+            }
+        </>
     )
 }
 

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategory } from "../services/actions/actionCategory";
+import { category_action } from "../services/actions/actionCategory";
 import NavCategory from "./pure/navCategory";
-import { getAllSubCategory } from "../services/actions/actionSubcategory";
+import { subCategory_action } from "../services/actions/actionSubcategory";
 import Search from "./pure/Search";
 import Login from "./pure/Login";
 import NavCategoryMobile from "./pure/mobile/NavCategoryMobile";
 import { updateKart } from "../services/actions/actionKart";
+import { clientAxiosProduct } from "../services/client/axiosClient";
+
 
 const selector = state => state.category;
 const selector2 = state => state.subCategory;
@@ -21,8 +23,8 @@ const Header = () => {
     const dispatch = useDispatch();
 
     useEffect(_ => {
-        dispatch(getAllCategory());
-        dispatch(getAllSubCategory());
+        dispatch(clientAxiosProduct("category", null, category_action));
+        dispatch(clientAxiosProduct("subcategory", null, subCategory_action));
         dispatch(updateKart());
     }, []);
 

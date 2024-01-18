@@ -11,12 +11,12 @@ const Search = () => {
         } else {
             alert("Debes escribir algo");
         }
-    }       
+    }
 
     return (
         <div className="header-search-container">
 
-            <input type="search" name="search" className="search-field" id="search" placeholder="Buscar productos..."/>
+            <input type="search" name="search" className="search-field" id="search" placeholder="Buscar productos..." />
 
             <button className="search-btn" id="search-btn" onClick={searching}>
                 <ion-icon name="search-outline"></ion-icon>

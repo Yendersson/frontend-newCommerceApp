@@ -1,7 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './container/Header';
-import Footer from './container/Footer';
+
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 import Routes from './routes/Routes';
 
@@ -10,13 +7,9 @@ function App() {
     <div className="App">
 
       <BrowserRouter>
-      <Header></Header>
         <Routes>
         </Routes>
       </BrowserRouter>
-
-
-      <Footer></Footer>
     </div>
   );
 }

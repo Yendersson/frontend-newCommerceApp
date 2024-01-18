@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getOneProducts } from "../services/actions/actionProducts";
+import { product_action } from "../services/actions/actionProducts";
 import Spinner from "./pure/Spinner";
 import { modifyKart } from "../services/actions/actionKart";
+import { clientAxiosProduct } from "../services/client/axiosClient";
 
 const selector = state => state.product
 const Product = () => {
@@ -12,7 +13,7 @@ const Product = () => {
     const dispatch = useDispatch();
 
     useEffect(_ => { 
-        dispatch(getOneProducts(id)) 
+        dispatch(clientAxiosProduct("/product/"+id, null, product_action));
     },[]);
 
     function addKart(id){

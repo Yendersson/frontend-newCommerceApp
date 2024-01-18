@@ -1,4 +1,4 @@
-import { GET_ACTIVE_LANDING } from "../types";
+import { LANDING_REQUEST, LANDING_REQUEST_FAILED, LANDING_REQUEST_SUCCESS } from "../types";
 
 const initialState = {
     data:[],
@@ -12,14 +12,29 @@ const initialState = {
 export const reducerLanding =(state = initialState, action) => {
 
     switch(action.type){
-        case GET_ACTIVE_LANDING:
+        case LANDING_REQUEST:
+            return {
+                ...state,
+                loader: true
+            };
 
-        return {
-            ...state,
-            data: action.payload.data,
-            loader: action.payload.loader,
-            error:action.payload.error
-        };
+        case LANDING_REQUEST_FAILED:
+            return {
+                ...state,
+                loader: false,
+                error: {
+                    exist:true,
+                    message: action.payload
+                }
+            };
+
+        case LANDING_REQUEST_SUCCESS:
+            return {
+                ...state,
+                data: action.payload,
+                loader: false,
+            };
+
 
         default:
             return state;

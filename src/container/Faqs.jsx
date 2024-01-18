@@ -2,7 +2,7 @@ import React from "react";
 
 const Faqs = () => {
 
-    function dropDown(e){
+    function dropDown(e) {
         console.log(e);
     }
 
@@ -21,7 +21,7 @@ const Faqs = () => {
                     <div className="item-faq">
                         <div className="question">
                             <h3>¿Puedo elegir la ONG a la cual quiero ayudar con la compra realizada?.<span>P</span></h3>
-                            <div className="more"><i onClick={(e) =>dropDown(e)}>+</i></div>
+                            <div className="more"><i onClick={(e) => dropDown(e)}>+</i></div>
                         </div>
                         <div className="answer">
                             <p> Sí, al momento de hacer click en pagar, aparecerán  en forma de lista las distintas organizaciones,

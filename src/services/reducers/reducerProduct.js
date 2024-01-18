@@ -1,50 +1,57 @@
 import { compare } from "../../utils/utils.js";
-import { ORDER_BY } from "../types.js";
+import { ORDER_BY, PRODUCTS_REQUEST, PRODUCTS_REQUEST_FAILED, PRODUCTS_REQUEST_SUCCESS } from "../types.js";
 
 const initialState = {
-    data:[],
-    error:{
-        exist:false,
-        message:null
+    data: [],
+    error: {
+        exist: false,
+        message: null
     },
-    loader:true
+    loader: true
 };
 
-export const reducerProduct = (state = initialState, action) =>{
+export const reducerProduct = (state = initialState, action) => {
 
     switch (action.type) {
-        case "api/getAllProducts":
+
+        case PRODUCTS_REQUEST:
             return {
                 ...state,
-                data: action.payload.data,
-                loader: action.payload.loader,
-                error:action.payload.error
+                loader: true
             };
 
-        case "api/getOneProducts":
-
+        case PRODUCTS_REQUEST_FAILED:
             return {
                 ...state,
-                data: action.payload.data,
-                loader: action.payload.loader,
-                error:action.payload.error
+                loader: false,
+                error: {
+                    exist:true,
+                    message: action.payload
+                }
+            };
+
+        case PRODUCTS_REQUEST_SUCCESS:
+            return {
+                ...state,
+                data: action.payload,
+                loader: false,
             };
 
         case ORDER_BY:
             if (action.payload === "ALFABETICO") {
-                let temparray = state.data.sort((a,b) => compare(a,b, "title"));
+                let temparray = state.data.sort((a, b) => compare(a, b, "title"));
                 return {
                     ...state,
                     data: temparray
                 };
-            } else if (action.payload === "P-MAYOR"){
-                let temparray = state.data.sort((a,b) => compare(a,b, "current_price")*(-1));
+            } else if (action.payload === "P-MAYOR") {
+                let temparray = state.data.sort((a, b) => compare(a, b, "current_price") * (-1));
                 return {
                     ...state,
                     data: temparray
                 };
-            }else if (action.payload === "P-MENOR"){
-                let temparray = state.data.sort((a,b) => compare(a,b, "current_price"));
+            } else if (action.payload === "P-MENOR") {
+                let temparray = state.data.sort((a, b) => compare(a, b, "current_price"));
                 return {
                     ...state,
                     data: temparray

@@ -1,15 +1,6 @@
 import axios from "axios";
 
-export function clientAxios(url, headers={"Content-Type":"application/json"}, type) {
-    let initialObj= {
-        data: [],
-        error:{
-            exist:false,
-            message:null
-        },
-        loader:true
-    };
-
+export function clientAxiosProduct(url, headers={"Content-Type":"application/json"}, action){
     const client = axios.create({
         baseURL: "http://localhost:18080/api/",
         url,
@@ -17,23 +8,15 @@ export function clientAxios(url, headers={"Content-Type":"application/json"}, ty
     });
 
     return async (dispatch) => {
+        dispatch(action.request);
         try {
             const response = await client.get(url);
-            initialObj.data = Array.isArray(response.data)? response.data: [response.data];
-            initialObj.loader = false;
+            const data = Array.isArray(response.data)? response.data: [response.data];
+
+            dispatch(action.requestSuccess(data));
             
         } catch (error) {
-            initialObj.error = {
-                exist:true,
-                message: error.message
-            };
+            dispatch(action.requestFailed(error));
         }
-
-        dispatch({
-            type:type,
-            payload:initialObj
-        })
-
     }
 }
-

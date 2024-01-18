@@ -1,7 +1,7 @@
 import React from "react";
 
 const Error404 = () => {
-    return  (
+    return (
         <div>
             <h1>Error 404 pagina no existe</h1>
         </div>

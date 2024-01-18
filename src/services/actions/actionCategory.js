@@ -1,6 +1,15 @@
-import axios from "axios";
-import { clientAxios } from "../client/axiosClient";
-import { GET_ALL_CATEGORIES } from "../types";
-
-export const getAllCategory = () => clientAxios("/category", null, GET_ALL_CATEGORIES);
+import { CATEGORY_REQUEST, CATEGORY_REQUEST_FAILED, CATEGORY_REQUEST_SUCCESS } from "../types";
     
+export const category_action = {
+    request: () => ({type: CATEGORY_REQUEST}),
+
+    requestSuccess: (data) => ({
+        type: CATEGORY_REQUEST_SUCCESS,
+        payload: data
+    }),
+
+    requestFailed: (err) => ({
+        type: CATEGORY_REQUEST_FAILED,
+        payload: err
+    }),
+};

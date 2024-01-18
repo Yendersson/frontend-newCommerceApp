@@ -1,15 +1,14 @@
 import React from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { filterByOrden } from "../../services/actions/actionProducts.js";
 
 const ListFilter = () => {
-    
+
     const dispatch = useDispatch();
 
     function orderBy(e) {
         dispatch(filterByOrden(e));
     }
-
 
     return (
         <div>

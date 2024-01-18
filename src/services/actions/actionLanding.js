@@ -1,5 +1,16 @@
-import { clientAxios } from "../client/axiosClient.js";
-import { GET_ACTIVE_LANDING } from "../types.js";
+import { LANDING_REQUEST, LANDING_REQUEST_FAILED, LANDING_REQUEST_SUCCESS } from "../types.js";
 
 
-export const getActiveLanding = () => clientAxios(`/landing/active`, null, GET_ACTIVE_LANDING);
+export const landing_action = {
+    request: () => ({type: LANDING_REQUEST}),
+
+    requestSuccess: (data) => ({
+        type: LANDING_REQUEST_SUCCESS,
+        payload: data
+    }),
+
+    requestFailed: (err) => ({
+        type: LANDING_REQUEST_FAILED,
+        payload: err
+    }),
+};

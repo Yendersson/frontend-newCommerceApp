@@ -1,5 +1,4 @@
-import { GET_PURCHASE } from "../types.js";
-
+import { PURCHASE_REQUEST, PURCHASE_REQUEST_FAILED, PURCHASE_REQUEST_SUCCESS } from "../types.js";
 
 const initialState = {
     data:[],
@@ -11,15 +10,30 @@ const initialState = {
 };
 
 export const reducePurchase = (state = initialState, action) => {
-    switch(action.type) {
-        
-        case GET_PURCHASE:
+    switch(action.type){
+        case PURCHASE_REQUEST:
             return {
                 ...state,
-                data: action.payload.data,
-                loader: action.payload.loader,
-                error:action.payload.error
+                loader: true
             };
+
+        case PURCHASE_REQUEST_FAILED:
+            return {
+                ...state,
+                loader: false,
+                error: {
+                    exist:true,
+                    message: action.payload
+                }
+            };
+
+        case PURCHASE_REQUEST_SUCCESS:
+            return {
+                ...state,
+                data: action.payload,
+                loader: false,
+            };
+
 
         default:
             return state;

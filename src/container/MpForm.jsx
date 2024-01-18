@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
 import { CardPayment, initMercadoPago } from "@mercadopago/sdk-react";
 
 initMercadoPago("TEST-e687118a-c544-4ece-9005-36d6b04cd62a", { locale: 'es-AR' });
 
-const MpForm = ({closeModal, total, items}) => {
+const MpForm = ({ closeModal, total, items }) => {
 
   function modalPayment() {
     closeModal();
@@ -13,11 +12,11 @@ const MpForm = ({closeModal, total, items}) => {
     amount: total,
   };
 
-  function orderObj(items){
+  function orderObj(items) {
     const itemsOrder = [];
-    
+
     items.forEach(item => {
-      let obj= {
+      let obj = {
         id: item.item.id,
         title: item.item.title,
         description: item.item.description,
@@ -33,22 +32,22 @@ const MpForm = ({closeModal, total, items}) => {
     return itemsOrder;
   }
 
-  const additional_info ={
+  const additional_info = {
     "items": orderObj(items),
     "payer": {
-        "first_name": "Test",
-        "last_name": "Test",
-        "phone": {
-            "area_code": 11,
-            "number": "987654321"
-        },
-        "address": {
-            "street_number": null
-        }
+      "first_name": "Test",
+      "last_name": "Test",
+      "phone": {
+        "area_code": 11,
+        "number": "987654321"
+      },
+      "address": {
+        "street_number": null
+      }
     },
-};
+  };
   const onSubmit = async (formData) => {
-    const data = {...formData, additional_info};
+    const data = { ...formData, additional_info };
     return new Promise((resolve, reject) => {
       fetch('http://localhost:18080/MpPayment', {
         method: 'POST',
@@ -61,8 +60,8 @@ const MpForm = ({closeModal, total, items}) => {
         .then(data => {
           resolve(data);
           alert(data.status);
-          if (data.status === 'approved') localStorage.setItem("items",JSON.stringify([]));
-          
+          if (data.status === 'approved') localStorage.setItem("items", JSON.stringify([]));
+
         })
         .catch(error => {
           reject();
@@ -72,7 +71,7 @@ const MpForm = ({closeModal, total, items}) => {
   };
 
   const onError = async (error) => {
-    alert("Ha ocurrido un error: "+ error);
+    alert("Ha ocurrido un error: " + error);
     console.log(error);
   };
 

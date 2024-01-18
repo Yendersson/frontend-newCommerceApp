@@ -1,5 +1,16 @@
-import axios from "axios";
-import { clientAxios } from "../client/axiosClient";
-import { GET_ALL_SUBCATEGORIES } from "../types";
+import { SUBCATEGORY_REQUEST, SUBCATEGORY_REQUEST_FAILED, SUBCATEGORY_REQUEST_SUCCESS } from "../types";
 
-export const getAllSubCategory = () => clientAxios("/subcategory", null, GET_ALL_SUBCATEGORIES);
+
+export const subCategory_action = {
+    request: () => ({type: SUBCATEGORY_REQUEST}),
+
+    requestSuccess: (data) => ({
+        type: SUBCATEGORY_REQUEST_SUCCESS,
+        payload: data
+    }),
+
+    requestFailed: (err) => ({
+        type: SUBCATEGORY_REQUEST_FAILED,
+        payload: err
+    }),
+};

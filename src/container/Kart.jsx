@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MpForm from "./MpForm";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteKart } from "../services/actions/actionKart";
@@ -6,6 +6,7 @@ import { deleteKart } from "../services/actions/actionKart";
 const selector = state => state.kart;
 
 const Kart = () => {
+
   const state = useSelector(selector);
   const dispatch = useDispatch();
 

@@ -1,10 +1,18 @@
-import axios from "axios";
-import { clientAxios, getResponse } from "../client/axiosClient";
-import { GET_ALL_PRODUCTS, GET_ONE_PRODUCT, ORDER_BY } from "../types";
+import { ORDER_BY, PRODUCTS_REQUEST, PRODUCTS_REQUEST_FAILED, PRODUCTS_REQUEST_SUCCESS } from "../types";
 
-export const getAllProducts = () => clientAxios("/product", null, GET_ALL_PRODUCTS);
+export const product_action = {
+    request: () => ({type: PRODUCTS_REQUEST}),
 
-export const getOneProducts = (id) => clientAxios(`/product/${id}`, null, GET_ONE_PRODUCT);
+    requestSuccess: (data) => ({
+        type: PRODUCTS_REQUEST_SUCCESS,
+        payload: data
+    }),
+
+    requestFailed: (err) => ({
+        type: PRODUCTS_REQUEST_FAILED,
+        payload: err
+    }),
+};
 
 export const filterByOrden = (orderBy) => {
     return {

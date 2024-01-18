@@ -20,8 +20,7 @@ const List = ({ data, result }) => {
 
                 <div className="busqueda-productos-desktop">
 
-
-                    {data.map((item, index) => {
+                    {data.length > 0? data.map((item, index) => {
                         return (
                             <article key={index} className="busqueda-articulo-desktop" data-id={item.id} onClick={() => nav(item.id)}>
                                 <div className="contenedor-img-api" >
@@ -34,7 +33,14 @@ const List = ({ data, result }) => {
                                 </div>
                             </article>
                         )
-                    })}
+                    }):
+                    (
+                        <div>
+                            <h2>No se encontraron resultados referente a la busqueda {result}</h2>
+                        </div>
+                    )
+                    
+                    }
 
                 </div>
             </section>

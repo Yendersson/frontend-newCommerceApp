@@ -4,20 +4,22 @@ import Banner from "./landing/Banner";
 import ONGs from "./landing/ONGs";
 import PaymentMethod from "./landing/PaymentMethod";
 import { useDispatch, useSelector } from "react-redux";
-import { getActiveLanding } from "../services/actions/actionLanding";
+import { landing_action } from "../services/actions/actionLanding";
 import Spinner from "./pure/Spinner";
+import { clientAxiosProduct } from "../services/client/axiosClient";
 
-const selector = state => state.landing
+const selector = state => state.landing;
+
 const Home = () => {
 
     const state = useSelector(selector);
     const dispatch = useDispatch();
 
-    useEffect(_=> {
-        dispatch(getActiveLanding());
+    useEffect(_ => {
+        dispatch(clientAxiosProduct("/landing/active", null, landing_action));
     }, [])
 
-    function renderizado(){
+    function renderizado() {
         if (state.loader) return (<Spinner></Spinner>);
         if (state.error.exist) return (<div>Ha ocurrido un error: {state.error.message}</div>);
 
@@ -25,10 +27,10 @@ const Home = () => {
             <>
                 <Banner data={state.data[0]["banner"]}></Banner>
                 {state.data[0].showOngs && (
-                <>
-                    <ONGs data={state.data[0]["ongs"]}></ONGs> 
-                    <ONGs type={"CARD"} data={state.data[0]["ongs"]}></ONGs>
-                </> 
+                    <>
+                        <ONGs data={state.data[0]["ongs"]}></ONGs>
+                        <ONGs type={"CARD"} data={state.data[0]["ongs"]}></ONGs>
+                    </>
                 )}
 
                 <Category></Category>
@@ -38,7 +40,7 @@ const Home = () => {
     }
     return (
         renderizado()
-        
+
     )
 }
 
