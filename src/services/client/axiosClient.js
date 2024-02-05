@@ -9,10 +9,10 @@ export function clientAxiosProduct(url, headers={"Content-Type":"application/jso
 
     return async (dispatch) => {
         dispatch(action.request);
+
         try {
             const response = await client.get(url);
             const data = Array.isArray(response.data)? response.data: [response.data];
-
             dispatch(action.requestSuccess(data));
             
         } catch (error) {

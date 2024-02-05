@@ -53,6 +53,7 @@ const MpForm = ({ closeModal, total, items }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(data),
       })

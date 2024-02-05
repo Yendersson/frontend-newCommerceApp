@@ -7,8 +7,9 @@ const Profile = () => {
     return (
         <div className="flex-datos">
             <ProfileMenu/>
-
-            <Outlet/>
+            <div className="detail">
+                <Outlet/>
+            </div>
         </div>
     )
 }

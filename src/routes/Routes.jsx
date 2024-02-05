@@ -13,6 +13,7 @@ import Main from "../container/Main";
 import Bill from "../container/Bill";
 import Purchase from "../container/Purchase";
 import ProfileData from "../container/pure/ProfileData";
+import ProfilePurchase from "../container/pure/ProfilePurchase";
 
 const Routes = () => {
 
@@ -63,7 +64,7 @@ const Routes = () => {
                         {index: true, element: <ProfileData/>},
                         {
                             path: "/profile/purchase",
-                            element: <Purchase/>
+                            element: <ProfilePurchase/>
                         }
                     ]
                 }

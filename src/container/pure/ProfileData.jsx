@@ -1,6 +1,7 @@
 import React from "react";
 import { useFetch } from "../../hooks/useAxios";
 import Spinner from "./Spinner"
+import ProfileDataContent from "./ProfileDataContent";
 
 const ProfileData = () => {
 
@@ -9,11 +10,9 @@ const ProfileData = () => {
     function renderizado() {
         if (loader) return (<Spinner />);
         return (
-            <div>
-                {data.id}
-                <br />
-                {data.username}
-            </div>
+            <>
+                <ProfileDataContent data={data}/>
+            </>
         )
     }
 
