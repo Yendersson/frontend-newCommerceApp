@@ -24,7 +24,7 @@ const List = ({ data, result }) => {
                         return (
                             <article key={index} className="busqueda-articulo-desktop" data-id={item.id} onClick={() => nav(item.id)}>
                                 <div className="contenedor-img-api" >
-                                    <img src={`http://localhost:18080/update/${item.picture}`} alt="" />
+                                    <img src={`${item.picture}`} alt="" />
                                 </div>
                                 <div className="busqueda-producto-description-desktop">
 

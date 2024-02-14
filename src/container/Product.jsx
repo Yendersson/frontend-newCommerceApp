@@ -34,7 +34,7 @@ const Product = () => {
                     <div className="containerProducto">
                         <div className="divImagesProducto">
                             <div className="divImgProducto">
-                                <img src={`http://localhost:18080/update/${state.data[0].picture}`} alt="#" className="imgPrincipalProducto" />
+                                <img src={`${state.data[0].picture}`} alt="#" className="imgPrincipalProducto" />
                             </div>
                             <div className="divGaleryProducto">
                                 <div className="imgMinProducto">

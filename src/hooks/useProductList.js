@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { clientAxiosProduct } from "../services/client/axiosClient";
 import { product_action } from "../services/actions/actionProducts";
@@ -11,11 +11,14 @@ export const useProductList = () => {
     const dispatch = useDispatch();
 
     useEffect(_ => {
+        
         dispatch(clientAxiosProduct("/product", null, product_action));
-    }, []);
+        console.log("render")
+        
+    }, [search, dispatch]);
 
     
-    if (search) product.data = product.data.filter(item => item.title.startsWith(search));
+    if (search) product.data = product.data.filter(item => item.title.toLowerCase().startsWith(search.toLowerCase()));
     let state = {...product};
     
     return {
